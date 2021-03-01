@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Tarea = () => {
+const Tarea = ({ tarea }) => {
     return (
-        <div>
-
-        </div>
+        <li className="tarea">Nombre: {tarea.nombre } Estado: {tarea.estado ? 'Activa' : 'Inactiva' }</li>
     )
 }
 
