@@ -1,10 +1,14 @@
-import { FORMULARIO_PROYECTO } from '../../types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types';
 
 export default (state, action) => {
     switch (action.type) {
         case FORMULARIO_PROYECTO:
-            console.log(state);
+            // return { ...state, formulario: !state.formulario };
             return { ...state, formulario: true };
+
+        case OBTENER_PROYECTOS:
+            // return { ...state, formulario: !state.formulario };
+            return { ...state, proyectos: action.payload };
 
         default:
             return state;
