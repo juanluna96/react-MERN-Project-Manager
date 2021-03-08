@@ -73,6 +73,10 @@ a {
     transition: background-color .3s ease;
 }
 
+.btn.btn-eliminar {
+    margin-bottom: 15px;
+}
+
 .btn:hover {
     cursor: pointer;
 }
@@ -187,7 +191,7 @@ aside {
 
 .formulario {
     background-color: var(--gris3);
-    padding: 4rem;
+    padding: 2rem 4rem;
 }
 
 .formulario form {

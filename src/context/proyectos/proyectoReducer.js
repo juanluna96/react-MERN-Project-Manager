@@ -1,4 +1,4 @@
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO, PROYECTO_ACTUAL } from '../../types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO, PROYECTO_ACTUAL, ELIMINAR_PROYECTO } from '../../types';
 
 export default (state, action) => {
     switch (action.type) {
@@ -7,7 +7,6 @@ export default (state, action) => {
             return { ...state, formulario: true };
 
         case OBTENER_PROYECTOS:
-            // return { ...state, formulario: !state.formulario };
             return { ...state, proyectos: action.payload };
 
         case AGREGAR_PROYECTO:
@@ -18,6 +17,9 @@ export default (state, action) => {
 
         case PROYECTO_ACTUAL:
             return { ...state, proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload.id) };
+
+        case ELIMINAR_PROYECTO:
+            return { ...state, proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload.id), proyecto: null };
 
         default:
             return state;
