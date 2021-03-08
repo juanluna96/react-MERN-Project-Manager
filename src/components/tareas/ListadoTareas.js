@@ -1,7 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
 import Tarea from './Tarea';
+import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
+    // Obtener el state del proyecto
+    const proyectosContext = useContext(proyectoContext)
+    const { proyecto } = proyectosContext;
 
     const [tareas, setTareas] = useState([
         { nombre: 'Elegir plataforma', estado: true },
@@ -10,10 +14,18 @@ const ListadoTareas = () => {
         { nombre: 'Elegir hosting', estado: true },
     ]);
 
+    // Si no hay proyecto seleccionado
+    if (!proyecto) {
+        return <h2>Selecciona un proyecto</h2>
+    }
+
+    const [proyectoActual] = proyecto;
+
+
     return (
         <Fragment>
 
-            <h2>Proyecto: Tienda virtual</h2>
+            <h2>Proyecto: { proyectoActual.nombre }</h2>
 
             <ul className="listado-tareas">
                 {
