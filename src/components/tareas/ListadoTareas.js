@@ -1,13 +1,16 @@
 import React, { Fragment, useState, useContext } from 'react'
 import Tarea from './Tarea';
 import proyectoContext from '../../context/proyectos/proyectoContext';
+import tareaContext from '../../context/tareas/tareaContext';
 
 const ListadoTareas = () => {
     // Obtener el state del proyecto
     const proyectosContext = useContext(proyectoContext);
     const { proyecto } = proyectosContext;
 
-    const tareas = [];
+    // Obtener el state de las tareas del proyecto
+    const tareasContext = useContext(tareaContext);
+    const { tareasproyecto } = tareasContext;
 
     // Si no hay proyecto seleccionado
     if (!proyecto) {
@@ -24,10 +27,10 @@ const ListadoTareas = () => {
 
             <ul className="listado-tareas">
                 {
-                    tareas.length === 0
+                    tareasproyecto.length === 0
                         ? (<li className="tarea">No hay tareas</li>)
                         :
-                        tareas.map((tarea) => {
+                        tareasproyecto.map((tarea) => {
                             return (
                                 <Tarea tarea={ tarea }></Tarea>
                             )
