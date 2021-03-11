@@ -4,7 +4,7 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
     // Obtener el state del proyecto
-    const proyectosContext = useContext(proyectoContext)
+    const proyectosContext = useContext(proyectoContext);
     const { proyecto } = proyectosContext;
 
     const tareas = [];
