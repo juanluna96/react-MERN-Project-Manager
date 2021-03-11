@@ -5,7 +5,7 @@ export default (state, action) => {
         case TAREAS_PROYECTO:
             return { ...state, tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload) };
         case AGREGAR_TAREA:
-            return { ...state.tareas, action.payload };
+            return { ...state, tareas: [...state.tareas, action.payload] };
         default:
             return state;
     }

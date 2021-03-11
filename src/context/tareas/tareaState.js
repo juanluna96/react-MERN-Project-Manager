@@ -39,7 +39,7 @@ const TareaState = (props) => {
     }
 
     return (
-        <tareaContext.Provider value={ { tareas: state.tareas, tareasproyecto: state.tareasproyecto, obtenerTareas } }>
+        <tareaContext.Provider value={ { tareas: state.tareas, tareasproyecto: state.tareasproyecto, obtenerTareas, agregarTarea } }>
             {props.children }
         </tareaContext.Provider>
     )
