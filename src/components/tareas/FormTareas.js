@@ -12,8 +12,20 @@ const FormTareas = () => {
     }
     const [proyectoActual] = proyecto;
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        // Validar
+
+        // Pasar la validación
+
+        // Agregar la nueva tarea al state de tareas
+
+        // Reiniciar el form
+    }
+
     return (
-        <div className="formulario">
+        <div className="formulario" onSubmit={ onSubmit }>
             <button type="submit" className="btn btn-eliminar" onClick={ () => eliminarProyecto(proyectoActual) }>Eliminar proyecto &times;</button>
             <form>
                 <div className="contenedor-input">
