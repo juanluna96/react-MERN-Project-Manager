@@ -7,12 +7,7 @@ const ListadoTareas = () => {
     const proyectosContext = useContext(proyectoContext)
     const { proyecto } = proyectosContext;
 
-    const [tareas, setTareas] = useState([
-        { nombre: 'Elegir plataforma', estado: true },
-        { nombre: 'Elegir colores', estado: false },
-        { nombre: 'Elegir plataformas de pago', estado: false },
-        { nombre: 'Elegir hosting', estado: true },
-    ]);
+    const tareas = [];
 
     // Si no hay proyecto seleccionado
     if (!proyecto) {
