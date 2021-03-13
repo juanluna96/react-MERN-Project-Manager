@@ -3,7 +3,13 @@ import tareaContext from './tareaContext'
 import TareaReducer from './tareaReducer'
 import { v4 as uuidv4 } from 'uuid';
 
-import { TAREAS_PROYECTO, AGREGAR_TAREA, VALIDAR_TAREA, ELIMINAR_TAREA } from '../../types';
+import {
+    TAREAS_PROYECTO,
+    AGREGAR_TAREA,
+    VALIDAR_TAREA,
+    ELIMINAR_TAREA,
+    ESTADO_TAREA
+} from '../../types';
 
 const TareaState = (props) => {
     const initialState = {
@@ -56,10 +62,18 @@ const TareaState = (props) => {
         })
     }
 
+    // Cambiar estado de la tarea
+    const cambiarEstadoTarea = (tarea) => {
+        dispatch({
+            type: ESTADO_TAREA,
+            payload: tarea
+        })
+    }
+
     return (
         <tareaContext.Provider value={ {
             tareas: state.tareas, tareasproyecto: state.tareasproyecto, errortarea: state.errortarea,
-            obtenerTareas, agregarTarea, validarTarea, eliminarTarea
+            obtenerTareas, agregarTarea, validarTarea, eliminarTarea, cambiarEstadoTarea
         } }>
             {props.children }
         </tareaContext.Provider>
