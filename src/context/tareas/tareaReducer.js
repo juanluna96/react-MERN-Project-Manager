@@ -5,7 +5,7 @@ export default (state, action) => {
         case TAREAS_PROYECTO:
             return { ...state, tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload) };
         case AGREGAR_TAREA:
-            return { ...state, tareas: [...state.tareas, action.payload], errortarea: false };
+            return { ...state, tareas: [action.payload, ...state.tareas], errortarea: false };
         case VALIDAR_TAREA:
             return { ...state, errortarea: true };
         case ELIMINAR_TAREA:
