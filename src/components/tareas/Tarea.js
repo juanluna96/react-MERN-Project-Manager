@@ -24,7 +24,7 @@ const Tarea = ({ tarea }) => {
     return (
         <Fragment>
             <li className="tarea sombra">{ tarea.nombre }
-                <div className="">
+                <div className="d-flex">
                     <div className="estado">
                         {
                             tarea.estado
