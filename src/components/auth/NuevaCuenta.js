@@ -57,7 +57,7 @@ const NuevaCuenta = () => {
                         <input type="text" name="confirmar" id="confirmar" placeholder="Repetir contraseña" value={ confirmar } onChange={ onChange } />
                     </div>
                     <div className="campo-form">
-                        <input type="submit" value="" className="btn btn-primario btn-block" value="Crear cuenta" />
+                        <input type="submit" className="btn btn-primario btn-block" value="Crear cuenta" />
                     </div>
                 </form>
 

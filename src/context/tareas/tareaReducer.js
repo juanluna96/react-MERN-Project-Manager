@@ -5,10 +5,11 @@ import {
     ELIMINAR_TAREA,
     ESTADO_TAREA,
     TAREA_ACTUAL,
-    ACTUALIZAR_TAREA
+    ACTUALIZAR_TAREA,
+    LIMPIAR_TAREA
 } from '../../types';
 
-export default (state, action) => {
+export const TareaReducer = (state, action) => {
     switch (action.type) {
         case TAREAS_PROYECTO:
             return { ...state, tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload) };
@@ -23,6 +24,8 @@ export default (state, action) => {
             return { ...state, tareas: state.tareas.map(tarea => tarea.id === action.payload.id ? action.payload : tarea) };
         case TAREA_ACTUAL:
             return { ...state, tareaseleccionada: action.payload };
+        case LIMPIAR_TAREA:
+            return { ...state, tareaseleccionada: null }
         default:
             return state;
     }

@@ -43,7 +43,7 @@ const Login = () => {
                         <input type="password" name="password" id="password" placeholder="Contraseña" value={ password } onChange={ onChange } />
                     </div>
                     <div className="campo-form">
-                        <input type="submit" value="" className="btn btn-primario btn-block" value="Logearse" />
+                        <input type="submit" className="btn btn-primario btn-block" value="Logearse" />
                     </div>
                 </form>
 
