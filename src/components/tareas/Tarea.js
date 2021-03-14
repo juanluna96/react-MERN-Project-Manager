@@ -11,7 +11,7 @@ const Tarea = ({ tarea }) => {
 
     // Extraer las funciones del context de tarea
     const tareasContext = useContext(tareaContext);
-    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea } = tareasContext;
+    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea, guardarTareaActual } = tareasContext;
 
     // Función que se ejecuta al eliminar tarea
     const tareaEliminar = (tarea) => {
@@ -39,7 +39,7 @@ const Tarea = ({ tarea }) => {
                         }
                     </div>
                     <div className="acciones">
-                        <button className="btn btn-primario" type="button">Editar</button>
+                        <button className="btn btn-primario" type="button" onClick={ () => guardarTareaActual(tarea) }>Editar</button>
                         <button onClick={ () => tareaEliminar(tarea) } className="btn btn-secundario" type="button">Eliminar</button>
                     </div>
                 </div>
