@@ -1,8 +1,17 @@
 const Usuario = require('../models/Usuario')
 
 exports.crearUsuario = async(req, res) => {
+
+    // Extraer email y password
+    const { email, password } = req.body;
+
     try {
-        let usuario;
+        // Revisar que el usuario registrado sea único
+        let usuario = await Usuario.findOne({ email });
+
+        if (usuario) {
+            return res.status(400).json({ msg: 'El usuario ya existe' });
+        }
 
         // Crea el nuevo usuario
         usuario = new Usuario(req.body);
