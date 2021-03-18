@@ -7,7 +7,7 @@ const ProyectoSchema = mongoose.Schema({
         trim: true
     },
     creador: {
-        type: moongose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario'
     },
     creado: {
@@ -16,4 +16,4 @@ const ProyectoSchema = mongoose.Schema({
     }
 })
 
-module.exports = moongose.model('Proyecto', ProyectoSchema);
+module.exports = mongoose.model('Proyecto', ProyectoSchema);
