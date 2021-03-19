@@ -7,7 +7,8 @@ const { check } = require('express-validator');
 // api/proyectos
 router.post('/',
     auth, [
-        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+        check('nombre', 'El nombre de la tarea es obligatorio').not().isEmpty(),
+        check('proyecto', 'Seleccionar un proyecto es obligatorio').not().isEmpty(),
     ],
     proyectoController.crearProyecto);
 
