@@ -8,10 +8,15 @@ const { check } = require('express-validator');
 router.post('/',
     auth, [
         check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
-    ],
-    proyectoController.crearProyecto);
+    ], proyectoController.crearProyecto);
 
+// Obtener todos los proyectos
 router.get('/', auth, proyectoController.obtenerProyecto);
 
+// Actualizar proyecto via ID
+router.put('/:id',
+    auth, [
+        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+    ], proyectoController.actualizarProyecto);
 
 module.exports = router;
