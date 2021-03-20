@@ -87,7 +87,7 @@ exports.actualizarTarea = async(req, res) => {
             return res.status(401).json({ msg: 'No autorizado' })
         }
 
-        // Crear un objeto con la nueva informacion
+        // Crear un objeto con la nueva información
 
         const nuevaTarea = {}
 
@@ -105,5 +105,39 @@ exports.actualizarTarea = async(req, res) => {
         res.json({ tarea });
     } catch (error) {
         console.log(error);
+        return res.status(500).send('Hubo un error al editar la tarea');
+    }
+}
+
+// Eliminar una tarea por ID
+
+exports.eliminarTarea = async(req, res) => {
+    // Extraer el proyecto y comprobar si existe
+    const { proyecto, nombre, estado } = req.body;
+
+    try {
+
+        // Si la tarea existe
+        const tareaExiste = await Tarea.findById(req.params.id);
+
+        if (!tareaExiste) {
+            return res.status(404).json({ msg: 'No existe la tarea' })
+        }
+
+        // Extraer el proyecto
+        const existeProyecto = await Proyecto.findById(proyecto);
+
+        // Revisar si el proyecto actual pertenece al usuario autenticado
+        if (existeProyecto.creador.toString() !== req.usuario.id) {
+            return res.status(401).json({ msg: 'No autorizado' })
+        }
+
+        // Elimina la tarea
+        await Tarea.findOneAndRemove({ _id: req.params.id })
+
+        res.json({ msg: 'Tarea eliminada' });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send('Hubo un error al editar la tarea');
     }
 }
