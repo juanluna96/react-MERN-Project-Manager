@@ -11,8 +11,9 @@ import AlertaState from './context/alertas/alertaState';
 import AuthState from './context/autenticacion/authState';
 
 function App() {
+  console.log(process.env.REACT_APP_BACKEND_URL)
   return (
-    <ProyectoState>
+    < ProyectoState >
       <TareaState>
         <AlertaState>
           <AuthState>
@@ -26,7 +27,7 @@ function App() {
           </AuthState>
         </AlertaState>
       </TareaState>
-    </ProyectoState>
+    </ProyectoState >
   );
 }
 
