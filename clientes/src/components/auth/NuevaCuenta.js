@@ -33,11 +33,19 @@ const NuevaCuenta = () => {
         // Validar que no haya campos vacíos
         if (nombre.trim() === '' || email.trim() === '' || password.trim() === '' || confirmar.trim() === '') {
             mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+            return;
         }
         // Password mínimo de 6 caracteres
+        if (password.length < 6) {
+            mostrarAlerta('La contraseña debe ser de almenos 6 caracteres', 'alerta-error');
+            return;
+        }
 
         // Las 2 password son iguales
-
+        if (password !== confirmar) {
+            mostrarAlerta('La contraseñas deben ser iguales', 'alerta-error');
+            return;
+        }
         // Pasarlo al action
     }
 
@@ -62,7 +70,7 @@ const NuevaCuenta = () => {
                     </div>
                     <div className="campo-form">
                         <label htmlFor="confirmar">Confirmar</label>
-                        <input type="text" name="confirmar" id="confirmar" placeholder="Repetir contraseña" value={ confirmar } onChange={ onChange } />
+                        <input type="password" name="confirmar" id="confirmar" placeholder="Repetir contraseña" value={ confirmar } onChange={ onChange } />
                     </div>
                     <div className="campo-form">
                         <input type="submit" className="btn btn-primario btn-block" value="Crear cuenta" />
