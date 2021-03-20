@@ -8,7 +8,7 @@ const tareaSchema = new Schema({
         trim: true
     },
     estado: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
     creado: {
