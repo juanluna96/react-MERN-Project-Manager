@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const TareaSchema = new Schema({
+const tareaSchema = new Schema({
     nombre: {
         type: String,
         required: true,
@@ -13,7 +13,7 @@ const TareaSchema = new Schema({
     },
     creado: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     proyecto: {
         type: mongoose.Schema.Types.ObjectId,
@@ -21,4 +21,4 @@ const TareaSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model("Tarea", TareaSchema);
+module.exports = mongoose.model("Tarea", tareaSchema);
