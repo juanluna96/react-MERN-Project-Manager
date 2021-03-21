@@ -9,7 +9,7 @@ import {
 export default function (state, action) {
     switch (action.type) {
         case REGISTRO_EXITOSO:
-            localStorage.setItem('token', action.payload.item);
+            localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
                 autenticado: true,
@@ -36,7 +36,7 @@ export default function (state, action) {
         case OBTENER_USUARIO:
             return {
                 ...state,
-
+                usuario: action.payload
             };
         case CERRAR_CESION:
             return {

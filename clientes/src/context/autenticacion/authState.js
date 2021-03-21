@@ -11,6 +11,8 @@ import {
     CERRAR_CESION
 } from '../../types';
 import clienteAxios from '../../config/axios';
+import tokenAuth from '../../config/token';
+
 
 const AuthState = (props) => {
     const initialState = {
@@ -27,7 +29,7 @@ const AuthState = (props) => {
     const registrarUsuario = async (datos) => {
         try {
             const respuesta = await clienteAxios.post('/api/usuarios', datos);
-            console.log(respuesta);
+            // console.log(respuesta);
 
             dispatch({
                 type: REGISTRO_EXITOSO,
@@ -55,12 +57,19 @@ const AuthState = (props) => {
         const token = localStorage.getItem('token');
         if (token) {
             // TODO: Funcion para enviar el token por headers
+            tokenAuth(token);
         }
 
         try {
             const respuesta = await clienteAxios.get('/api/auth');
-            console.log(respuesta);
+            // console.log(respuesta);
+
+            dispatch({
+                type: OBTENER_USUARIO,
+                payload: respuesta.data.usuario
+            })
         } catch (error) {
+            console.log(error.response);
             dispatch({
                 type: LOGIN_ERROR
             })
