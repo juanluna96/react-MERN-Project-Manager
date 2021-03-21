@@ -104,7 +104,7 @@ const AuthState = (props) => {
     return (
         <AuthContext.Provider value={ {
             token: state.token, autenticado: state.autenticado, usuario: state.usuario, mensaje: state.mensaje,
-            registrarUsuario, iniciarSesion
+            registrarUsuario, iniciarSesion, usuarioAutenticado
         } }>
             {props.children }
         </AuthContext.Provider>
