@@ -8,6 +8,7 @@ import {
 } from '../../types';
 export default function (state, action) {
     switch (action.type) {
+        case LOGIN_EXITOSO:
         case REGISTRO_EXITOSO:
             localStorage.setItem('token', action.payload.token);
             return {
@@ -15,18 +16,8 @@ export default function (state, action) {
                 autenticado: true,
                 mensaje: null
             }
-        case REGISTRO_ERROR:
-            return {
-                ...state,
-                token: null,
-                mensaje: action.payload
-            };
-        case LOGIN_EXITOSO:
-            return {
-                ...state,
-
-            };
         case LOGIN_ERROR:
+        case REGISTRO_ERROR:
             localStorage.removeItem('token');
             return {
                 ...state,

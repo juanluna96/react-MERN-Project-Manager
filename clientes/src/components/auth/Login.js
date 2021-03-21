@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const Login = () => {
+const Login = (props) => {
 
     // Extraer los valores del context
     const alertaContext = useContext(AlertaContext);
@@ -11,14 +11,18 @@ const Login = () => {
 
     // Extraer los valores del context
     const authContext = useContext(AuthContext);
-    const { mensaje, iniciarSesion } = authContext;
+    const { mensaje, autenticado, iniciarSesion } = authContext;
 
-    // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
+    // En caso de que el password o usuario no existe
     useEffect(() => {
+        if (autenticado) {
+            props.history.push('/proyectos');
+        }
+
         if (mensaje) {
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
-    }, [mensaje]);
+    }, [mensaje, autenticado, props.history]);
 
     // State para iniciar sesión
     const [usuario, setUsuario] = useState({
