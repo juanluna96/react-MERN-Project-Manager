@@ -27,9 +27,11 @@ export default function (state, action) {
 
             };
         case LOGIN_ERROR:
+            localStorage.removeItem('token');
             return {
                 ...state,
-
+                token: null,
+                mensaje: action.payload
             };
         case OBTENER_USUARIO:
             return {
