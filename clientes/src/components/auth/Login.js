@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AlertaContext from '../../context/alertas/alertaContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const Login = () => {
+
+    // Extraer los valores del context
+    const alertaContext = useContext(AlertaContext);
+    const { alerta, mostrarAlerta } = alertaContext;
+
+    // Extraer los valores del context
+    const authContext = useContext(AuthContext);
+    const { mensaje, iniciarSesion } = authContext;
+
+    // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
+    useEffect(() => {
+        if (mensaje) {
+            mostrarAlerta(mensaje.msg, mensaje.categoria)
+        }
+    }, [mensaje]);
 
     // State para iniciar sesión
     const [usuario, setUsuario] = useState({
@@ -24,15 +41,19 @@ const Login = () => {
         e.preventDefault();
 
         // Validar que no haya campos vacíos
+        if (email.trim() === '' || password.trim() === '') {
+            mostrarAlerta('Todos los campos son obligatorios', 'alerta-error')
+        }
 
         // Pasarlo al action
+        iniciarSesion({ email, password });
     }
 
     return (
         <div className="form-usuario">
+            {  alerta ? (<div className={ `alerta ${alerta.categoria}` }>{ alerta.msg }</div>) : null }
             <div className="contenedor-form sombra-dark">
                 <h1>Iniciar sesión</h1>
-
                 <form onSubmit={ onSubmit }>
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>

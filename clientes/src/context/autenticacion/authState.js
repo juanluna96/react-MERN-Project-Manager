@@ -8,7 +8,7 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     OBTENER_USUARIO,
-    CERRAR_CESION
+    CERRAR_SESION
 } from '../../types';
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/token';
@@ -76,10 +76,29 @@ const AuthState = (props) => {
         }
     }
 
+    // Cuando el usuario inicia sesión
+    const iniciarSesion = async (datos) => {
+        try {
+            const respuesta = await clienteAxios.post('/api/auth', datos);
+            console.log(respuesta);
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
+            })
+        }
+    }
+
     return (
         <AuthContext.Provider value={ {
             token: state.token, autenticado: state.autenticado, usuario: state.usuario, mensaje: state.mensaje,
-            registrarUsuario
+            registrarUsuario, iniciarSesion
         } }>
             {props.children }
         </AuthContext.Provider>

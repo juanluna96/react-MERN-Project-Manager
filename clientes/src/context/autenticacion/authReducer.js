@@ -4,7 +4,7 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     OBTENER_USUARIO,
-    CERRAR_CESION
+    CERRAR_SESION
 } from '../../types';
 export default function (state, action) {
     switch (action.type) {
@@ -38,7 +38,7 @@ export default function (state, action) {
                 ...state,
                 usuario: action.payload
             };
-        case CERRAR_CESION:
+        case CERRAR_SESION:
             return {
                 ...state,
 
