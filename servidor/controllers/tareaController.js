@@ -40,7 +40,7 @@ exports.crearTarea = async (req, res) => {
 exports.obtenerTareas = async (req, res) => {
 
     // Extraer el proyecto y comprobar si existe
-    const { proyecto } = req.body;
+    const { proyecto } = req.query;
 
     try {
         const existeProyecto = await Proyecto.findById(proyecto);
@@ -54,7 +54,7 @@ exports.obtenerTareas = async (req, res) => {
         }
 
         // Obtener las tareas por proyectos
-        const tareas = await Tarea.find({ proyecto });
+        const tareas = await Tarea.find({ proyecto }).sort({ creado: -1 });
 
         res.json({ tareas });
 

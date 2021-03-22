@@ -20,8 +20,6 @@ const ListadoTareas = () => {
 
     const [proyectoActual] = proyecto;
 
-    console.log(tareasproyecto);
-
     return (
         <Fragment>
 
@@ -35,7 +33,7 @@ const ListadoTareas = () => {
                             {
                                 tareasproyecto.map((tarea) => {
                                     return (
-                                        <CSSTransition key={ tarea.id } timeout={ 450 } className="tarea">
+                                        <CSSTransition key={ tarea._id } timeout={ 450 } className="tarea">
                                             <Tarea tarea={ tarea }></Tarea>
                                         </CSSTransition>
                                     )

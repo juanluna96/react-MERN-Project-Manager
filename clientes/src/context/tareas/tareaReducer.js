@@ -12,8 +12,7 @@ import {
 export const TareaReducer = (state, action) => {
     switch (action.type) {
         case TAREAS_PROYECTO:
-            console.log(state.tareasproyecto);
-            return { ...state, tareasproyecto: state.tareasproyecto.filter(tarea => tarea.proyectoId === action.payload) };
+            return { ...state, tareasproyecto: action.payload };
         case AGREGAR_TAREA:
             return { ...state, tareasproyecto: [action.payload, ...state.tareasproyecto], errortarea: false };
         case VALIDAR_TAREA:
