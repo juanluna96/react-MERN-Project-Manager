@@ -9,7 +9,8 @@ import {
     ELIMINAR_TAREA,
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
-    LIMPIAR_TAREA
+    LIMPIAR_TAREA,
+    DESACTIVAR_CARGANDO
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -17,7 +18,8 @@ const TareaState = (props) => {
     const initialState = {
         tareasproyecto: [],
         errortarea: false,
-        tareaseleccionada: null
+        tareaseleccionada: null,
+        cargando: false
     }
 
     // Crear dispatch y state
@@ -34,6 +36,12 @@ const TareaState = (props) => {
                 type: TAREAS_PROYECTO,
                 payload: resultado.data.tareas
             })
+            console.log(state)
+            setTimeout(() => {
+                dispatch({
+                    type: DESACTIVAR_CARGANDO
+                })
+            }, 1000);
         } catch (error) {
             console.log(error);
         }
@@ -104,7 +112,7 @@ const TareaState = (props) => {
 
     return (
         <tareaContext.Provider value={ {
-            tareasproyecto: state.tareasproyecto, errortarea: state.errortarea, tareaseleccionada: state.tareaseleccionada,
+            tareasproyecto: state.tareasproyecto, errortarea: state.errortarea, tareaseleccionada: state.tareaseleccionada, cargando: state.cargando,
             obtenerTareas, agregarTarea, validarTarea, eliminarTarea, guardarTareaActual, actualizarTarea, limpiarTarea
         } }>
             {props.children }

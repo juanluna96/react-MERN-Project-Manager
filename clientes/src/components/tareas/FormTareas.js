@@ -9,7 +9,7 @@ const FormTareas = () => {
 
     // Extraer funcion para agregar tarea
     const tareasContext = useContext(tareaContext);
-    const { tareaseleccionada, errortarea, agregarTarea, validarTarea, obtenerTareas, actualizarTarea, limpiarTarea } = tareasContext;
+    const { tareaseleccionada, errortarea, agregarTarea, validarTarea, obtenerTareas, actualizarTarea, limpiarTarea, cargando } = tareasContext;
 
     // Effect que detecta si hay una tarea seleccionada
     useEffect(() => {
@@ -80,20 +80,24 @@ const FormTareas = () => {
         })
     }
 
-    return (
-        <div className="formulario">
-            <button type="submit" className="btn btn-eliminar" onClick={ () => eliminarProyecto(proyectoActual) }>Eliminar proyecto &times;</button>
-            <form onSubmit={ onSubmit }>
-                { errortarea ? <p className="mensaje error">El nombre de la tarea es obligatorio</p> : null }
-                <div className="contenedor-input">
-                    <input type="text" name="nombre" value={ nombre } onChange={ handleChange } className="input-text" placeholder="Nombre de la tarea..." />
-                </div>
-                <div className="contenedor-input">
-                    <input type="submit" className="btn btn-primario btn-submit btn-block" value={ tareaseleccionada ? "Editar tarea" : "Agregar tarea" } />
-                </div>
-            </form>
-        </div>
-    )
+    if (cargando) {
+        return null;
+    } else {
+        return (
+            <div className="formulario">
+                <button type="submit" className="btn btn-eliminar" onClick={ () => eliminarProyecto(proyectoActual) }>Eliminar proyecto &times;</button>
+                <form onSubmit={ onSubmit }>
+                    { errortarea ? <p className="mensaje error">El nombre de la tarea es obligatorio</p> : null }
+                    <div className="contenedor-input">
+                        <input type="text" name="nombre" value={ nombre } onChange={ handleChange } className="input-text" placeholder="Nombre de la tarea..." />
+                    </div>
+                    <div className="contenedor-input">
+                        <input type="submit" className="btn btn-primario btn-submit btn-block" value={ tareaseleccionada ? "Editar tarea" : "Agregar tarea" } />
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default FormTareas

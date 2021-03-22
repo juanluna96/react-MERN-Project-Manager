@@ -5,13 +5,14 @@ import {
     ELIMINAR_TAREA,
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
-    LIMPIAR_TAREA
+    LIMPIAR_TAREA,
+    DESACTIVAR_CARGANDO
 } from '../../types';
 
 export const TareaReducer = (state, action) => {
     switch (action.type) {
         case TAREAS_PROYECTO:
-            return { ...state, tareasproyecto: action.payload };
+            return { ...state, tareasproyecto: action.payload, cargando: true };
         case AGREGAR_TAREA:
             return { ...state, tareasproyecto: [action.payload, ...state.tareasproyecto], errortarea: false };
         case VALIDAR_TAREA:
@@ -24,6 +25,8 @@ export const TareaReducer = (state, action) => {
             return { ...state, tareaseleccionada: action.payload };
         case LIMPIAR_TAREA:
             return { ...state, tareaseleccionada: null }
+        case DESACTIVAR_CARGANDO:
+            return { ...state, cargando: false }
         default:
             return state;
     }
