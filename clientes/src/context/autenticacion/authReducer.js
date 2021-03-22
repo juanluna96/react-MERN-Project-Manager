@@ -6,6 +6,7 @@ import {
     OBTENER_USUARIO,
     CERRAR_SESION
 } from '../../types';
+/* eslint import/no-anonymous-default-export: [2, {"allowAnonymousFunction": true}] */
 export default function (state, action) {
     switch (action.type) {
         case LOGIN_EXITOSO:

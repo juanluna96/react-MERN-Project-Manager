@@ -10,7 +10,6 @@ import {
     ELIMINAR_PROYECTO,
     PROYECTO_ERROR
 } from '../../types';
-import { v4 as uuidv4 } from 'uuid';
 import clienteAxios from '../../config/axios';
 
 const ProyectoState = props => {
@@ -44,7 +43,6 @@ const ProyectoState = props => {
             })
 
             calcularNumTareas(proyectos);
-            console.log(proyectos);
         } catch (error) {
             console.log(error);
         }
