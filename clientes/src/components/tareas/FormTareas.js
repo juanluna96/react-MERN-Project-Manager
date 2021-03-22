@@ -68,6 +68,8 @@ const FormTareas = () => {
             // Elimina tarea seleccionada del state
             limpiarTarea();
         }
+        // Sumar una tarea mas al proyecto
+        proyectoActual.numTareas++;
 
         // Obtener y filtrar las tareas del proyecto actual
         obtenerTareas(proyectoActual);

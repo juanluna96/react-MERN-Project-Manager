@@ -20,6 +20,11 @@ router.put('/:id',
     check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
 ], proyectoController.actualizarProyecto);
 
+// Obtiene el numero de tareas por proyectos
+router.get('/:id',
+    auth,
+    proyectoController.numTareasxProyecto);
+
 // Eliminar proyecto via ID
 router.delete('/:id',
     auth,

@@ -11,7 +11,7 @@ const Barra = () => {
     }, []);;
 
     return (
-        <header className="app-header">
+        <header className="app-header d-flex">
             {  usuario ? <p className="nombre-usuario">Hola <span>{ usuario.nombre }</span></p> : null }
             <nav className="nav-principal">
                 <button className="btn btn-blank cerrar-sesion" onClick={ () => cerrarSesion() }>Cerrar sesión</button>

@@ -20,7 +20,14 @@ const Proyecto = ({ proyecto }) => {
 
     return (
         <li>
-            <button type="button" className="btn btn-blank" onClick={ () => seleccionarProyecto(proyecto) }>{ proyecto.nombre }</button>
+            <button type="button" className="btn btn-block btn-blank d-flex" onClick={ () => seleccionarProyecto(proyecto) }>
+                { proyecto.nombre }
+                { proyecto.numTareas !== 0 ? (
+                    <div className="label">
+                        <span className="key">{ proyecto.numTareas }</span>
+                    </div>
+                ) : null }
+            </button>
         </li>
     )
 }

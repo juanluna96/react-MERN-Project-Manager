@@ -1,7 +1,8 @@
 const { validationResult } = require('express-validator')
 const Proyecto = require('../models/Proyecto')
+const Tarea = require('../models/Tarea')
 
-exports.crearProyecto = async(req, res) => {
+exports.crearProyecto = async (req, res) => {
     // Revisar si hay errores
     const errores = validationResult(req);
     if (!errores.isEmpty()) {
@@ -26,7 +27,7 @@ exports.crearProyecto = async(req, res) => {
 
 // Obtiene todos los proyectos del usuario actual
 
-exports.obtenerProyecto = async(req, res) => {
+exports.obtenerProyecto = async (req, res) => {
     try {
         const proyectos = await Proyecto.find({ creador: req.usuario.id }).sort({ creado: -1 });
         res.json({ proyectos });
@@ -38,7 +39,7 @@ exports.obtenerProyecto = async(req, res) => {
 
 // Actualiza un proyecto
 
-exports.actualizarProyecto = async(req, res) => {
+exports.actualizarProyecto = async (req, res) => {
     // Revisar si hay errores
     const errores = validationResult(req);
     if (!errores.isEmpty()) {
@@ -81,9 +82,36 @@ exports.actualizarProyecto = async(req, res) => {
     }
 }
 
+// Conseguir numero de tareas por proyecto
+exports.numTareasxProyecto = async (req, res) => {
+    try {
+        // Revisar el id
+        let proyecto = await Proyecto.findById(req.params.id);
+
+        // Si el proyecto existe o no
+
+        if (!proyecto) {
+            return res.status(404).json({ msg: 'Proyecto no encontrado' })
+        }
+
+        // Verificar el creador del proyecto
+        if (proyecto.creador.toString() != req.usuario.id) {
+            return res.status(401).json({ msg: 'No autorizado' });
+        }
+
+        // Obtener las tareas por proyectos
+        const numTareas = await Tarea.find({ proyecto }).count();
+        res.json({ numTareas });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error en el servidor');
+    }
+}
+
 // Eliminar proyecto por su ID
 
-exports.eliminarProyecto = async(req, res) => {
+exports.eliminarProyecto = async (req, res) => {
     try {
         // Revisar el id
         let proyecto = await Proyecto.findById(req.params.id);

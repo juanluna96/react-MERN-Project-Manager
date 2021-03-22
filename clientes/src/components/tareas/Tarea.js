@@ -17,6 +17,8 @@ const Tarea = ({ tarea }) => {
     const tareaEliminar = (tarea) => {
         eliminarTarea(tarea);
 
+        proyectoActual.numTareas--;
+
         // Obtener y filtrar las tareas del proyecto actual
         obtenerTareas(proyectoActual);
     }
