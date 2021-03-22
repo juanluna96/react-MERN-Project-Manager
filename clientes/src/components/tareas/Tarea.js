@@ -11,7 +11,7 @@ const Tarea = ({ tarea }) => {
 
     // Extraer las funciones del context de tarea
     const tareasContext = useContext(tareaContext);
-    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea, guardarTareaActual } = tareasContext;
+    const { eliminarTarea, obtenerTareas, guardarTareaActual, actualizarTarea } = tareasContext;
 
     // Función que se ejecuta al eliminar tarea
     const tareaEliminar = (tarea) => {
@@ -26,7 +26,7 @@ const Tarea = ({ tarea }) => {
     // Función para cambiar el estado de la tarea
     const CambiarEstado = (tarea) => {
         tarea.estado = !tarea.estado;
-        cambiarEstadoTarea(tarea);
+        actualizarTarea(tarea);
     }
 
     return (
