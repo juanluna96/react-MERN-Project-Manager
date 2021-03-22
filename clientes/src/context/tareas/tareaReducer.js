@@ -18,7 +18,7 @@ export const TareaReducer = (state, action) => {
         case VALIDAR_TAREA:
             return { ...state, errortarea: true };
         case ELIMINAR_TAREA:
-            return { ...state, tareasproyecto: state.tareasproyecto.filter(tarea => tarea.id !== action.payload) };
+            return { ...state, tareasproyecto: state.tareasproyecto.filter(tarea => tarea._id !== action.payload) };
         case ACTUALIZAR_TAREA:
         case ESTADO_TAREA:
             return { ...state, tareasproyecto: state.tareasproyecto.map(tarea => tarea.id === action.payload.id ? action.payload : tarea) };

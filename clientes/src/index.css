@@ -328,7 +328,7 @@ aside {
 .tarea-enter-active,
 .proyecto-enter-active {
     opacity: 1;
-    transition: opacity 200ms;
+    transition: opacity 150ms;
 }
 
 .tarea-exit,
@@ -339,7 +339,7 @@ aside {
 .tarea-exit-active,
 .proyecto-exit-active {
     opacity: 0;
-    transition: opacity 200ms;
+    transition: opacity 150ms;
 }
 
 .form-usuario {

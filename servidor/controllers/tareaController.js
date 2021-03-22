@@ -113,7 +113,7 @@ exports.actualizarTarea = async (req, res) => {
 
 exports.eliminarTarea = async (req, res) => {
     // Extraer el proyecto y comprobar si existe
-    const { proyecto, nombre, estado } = req.body;
+    const { proyecto } = req.query;
 
     try {
 
@@ -138,6 +138,6 @@ exports.eliminarTarea = async (req, res) => {
         res.json({ msg: 'Tarea eliminada' });
     } catch (error) {
         console.log(error);
-        return res.status(500).send('Hubo un error al editar la tarea');
+        return res.status(500).send('Hubo un error al eliminar la tarea');
     }
 }
