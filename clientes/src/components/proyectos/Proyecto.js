@@ -22,11 +22,7 @@ const Proyecto = ({ proyecto }) => {
         <li>
             <button type="button" className="btn btn-block btn-blank d-flex" onClick={ () => seleccionarProyecto(proyecto) }>
                 { proyecto.nombre }
-                { proyecto.numTareas !== 0 && proyecto.numTareas !== undefined ? (
-                    <div className="label">
-                        <span className="key">{ proyecto.numTareas }</span>
-                    </div>
-                ) : null }
+                { proyecto.numTareas != 0 ? (<div className="label"><span className="key">{ proyecto.numTareas }</span></div>) : null }
             </button>
         </li>
     )
