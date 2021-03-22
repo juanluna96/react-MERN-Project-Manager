@@ -21,7 +21,6 @@ const ListadoTareas = () => {
 
     const [proyectoActual] = proyecto;
 
-    console.log(cargando);
     if (cargando) {
         return (<Snipper></Snipper>)
     } else {

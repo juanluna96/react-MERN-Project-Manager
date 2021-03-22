@@ -100,7 +100,7 @@ exports.numTareasxProyecto = async (req, res) => {
         }
 
         // Obtener las tareas por proyectos
-        const numTareas = await Tarea.find({ proyecto }).count();
+        const numTareas = await Tarea.find({ proyecto, estado: false }).count();
         res.json({ numTareas });
 
     } catch (error) {

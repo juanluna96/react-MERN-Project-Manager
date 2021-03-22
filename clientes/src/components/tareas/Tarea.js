@@ -17,7 +17,9 @@ const Tarea = ({ tarea }) => {
     const tareaEliminar = (tarea) => {
         eliminarTarea(tarea, proyectoActual._id);
 
-        proyectoActual.numTareas--;
+        if (tarea.estado === false) {
+            proyectoActual.numTareas--;
+        }
 
         // Obtener y filtrar las tareas del proyecto actual
         obtenerTareas(proyectoActual);
@@ -25,7 +27,14 @@ const Tarea = ({ tarea }) => {
 
     // Función para cambiar el estado de la tarea
     const CambiarEstado = (tarea) => {
+        if (tarea.estado === false) {
+            proyectoActual.numTareas--;
+        } else {
+            proyectoActual.numTareas++;
+        }
+
         tarea.estado = !tarea.estado;
+
         actualizarTarea(tarea);
     }
 
@@ -42,7 +51,7 @@ const Tarea = ({ tarea }) => {
                     </div>
                     <div className="acciones">
                         <button className="btn btn-primario" type="button" onClick={ () => guardarTareaActual(tarea) }>Editar</button>
-                        <button onClick={ () => tareaEliminar(tarea._id) } className="btn btn-secundario" type="button">Eliminar</button>
+                        <button onClick={ () => tareaEliminar(tarea) } className="btn btn-secundario" type="button">Eliminar</button>
                     </div>
                 </div>
             </li>

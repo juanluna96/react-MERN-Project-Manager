@@ -37,27 +37,28 @@ const ProyectoState = props => {
         try {
             const resultado = await clienteAxios.get('/api/proyectos');
             const proyectos = resultado.data.proyectos;
+
+            await calcularNumTareas(proyectos);
+
             dispatch({
                 type: OBTENER_PROYECTOS,
                 payload: proyectos
             })
-
-            calcularNumTareas(proyectos);
         } catch (error) {
             console.log(error);
         }
     }
 
     // Obtener numero de tareas en cada proyecto
-    const calcularNumTareas = (proyectos) => {
-        proyectos.map(async (proyecto) => {
+    const calcularNumTareas = async (proyectos) => {
+        for (const proyecto of proyectos) {
             try {
                 const resultado = await clienteAxios.get(`/api/proyectos/${proyecto._id}`);
                 proyecto.numTareas = resultado.data.numTareas;
             } catch (error) {
                 console.log(error.response);
             }
-        });
+        }
     }
 
     // Agregar un nuevo proyecto

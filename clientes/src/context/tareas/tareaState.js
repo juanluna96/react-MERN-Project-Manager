@@ -36,7 +36,7 @@ const TareaState = (props) => {
                 type: TAREAS_PROYECTO,
                 payload: resultado.data.tareas
             })
-            console.log(state)
+            console.log(resultado.data.tareas);
             setTimeout(() => {
                 dispatch({
                     type: DESACTIVAR_CARGANDO
@@ -71,10 +71,10 @@ const TareaState = (props) => {
     // Eliminar tarea
     const eliminarTarea = async (tarea, proyecto) => {
         try {
-            await clienteAxios.delete(`/api/tareas/${tarea}`, { params: { proyecto } })
+            await clienteAxios.delete(`/api/tareas/${tarea._id}`, { params: { proyecto } })
             dispatch({
                 type: ELIMINAR_TAREA,
-                payload: tarea
+                payload: tarea._id
             })
         } catch (error) {
             console.log(error.response);
