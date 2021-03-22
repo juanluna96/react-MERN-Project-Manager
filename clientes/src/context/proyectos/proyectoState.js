@@ -35,6 +35,7 @@ const ProyectoState = props => {
             })
 
             calcularNumTareas(proyectos);
+            console.log(proyectos);
         } catch (error) {
             console.log(error);
         }

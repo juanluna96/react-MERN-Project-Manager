@@ -16,10 +16,10 @@ export const proyectoReducer = (state, action) => {
             return { ...state, errorformulario: true };
 
         case PROYECTO_ACTUAL:
-            return { ...state, proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload.id) };
+            return { ...state, proyecto: state.proyectos.filter(proyecto => proyecto._id === action.payload._id) };
 
         case ELIMINAR_PROYECTO:
-            return { ...state, proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload.id), proyecto: null };
+            return { ...state, proyectos: state.proyectos.filter(proyecto => proyecto._id !== action.payload._id), proyecto: null };
 
         default:
             return state;
