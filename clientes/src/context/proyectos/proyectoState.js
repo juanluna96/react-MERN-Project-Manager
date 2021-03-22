@@ -1,7 +1,15 @@
 import React, { useReducer } from 'react'
 import proyectoContext from './proyectoContext';
 import { proyectoReducer } from './proyectoReducer';
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO, PROYECTO_ACTUAL, ELIMINAR_PROYECTO } from '../../types';
+import {
+    FORMULARIO_PROYECTO,
+    OBTENER_PROYECTOS,
+    AGREGAR_PROYECTO,
+    VALIDAR_FORMULARIO,
+    PROYECTO_ACTUAL,
+    ELIMINAR_PROYECTO,
+    PROYECTO_ERROR
+} from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import clienteAxios from '../../config/axios';
 
@@ -11,7 +19,8 @@ const ProyectoState = props => {
         proyectos: [],
         formulario: false,
         errorformulario: false,
-        proyecto: null
+        proyecto: null,
+        mensaje: null
     }
 
     // Dispatch para ejecutar las acciones
@@ -87,13 +96,20 @@ const ProyectoState = props => {
     const eliminarProyecto = async (proyecto) => {
         try {
             await clienteAxios.delete(`/api/proyectos/${proyecto._id}`)
+            dispatch({
+                type: ELIMINAR_PROYECTO,
+                payload: proyecto
+            })
         } catch (error) {
-            console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
-        dispatch({
-            type: ELIMINAR_PROYECTO,
-            payload: proyecto
-        })
     }
 
     return (
@@ -102,6 +118,7 @@ const ProyectoState = props => {
             formulario: state.formulario,
             errorformulario: state.errorformulario,
             proyecto: state.proyecto,
+            mensaje: state.mensaje,
             mostrarFormulario,
             obtenerProyectos,
             agregarProyecto,
