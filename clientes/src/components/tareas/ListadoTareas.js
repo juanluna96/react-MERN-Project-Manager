@@ -20,6 +20,7 @@ const ListadoTareas = () => {
 
     const [proyectoActual] = proyecto;
 
+    console.log(tareasproyecto);
 
     return (
         <Fragment>

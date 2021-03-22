@@ -12,16 +12,17 @@ import {
 export const TareaReducer = (state, action) => {
     switch (action.type) {
         case TAREAS_PROYECTO:
-            return { ...state, tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload) };
+            console.log(state.tareasproyecto);
+            return { ...state, tareasproyecto: state.tareasproyecto.filter(tarea => tarea.proyectoId === action.payload) };
         case AGREGAR_TAREA:
-            return { ...state, tareas: [action.payload, ...state.tareas], errortarea: false };
+            return { ...state, tareasproyecto: [action.payload, ...state.tareasproyecto], errortarea: false };
         case VALIDAR_TAREA:
             return { ...state, errortarea: true };
         case ELIMINAR_TAREA:
-            return { ...state, tareas: state.tareas.filter(tarea => tarea.id !== action.payload) };
+            return { ...state, tareasproyecto: state.tareasproyecto.filter(tarea => tarea.id !== action.payload) };
         case ACTUALIZAR_TAREA:
         case ESTADO_TAREA:
-            return { ...state, tareas: state.tareas.map(tarea => tarea.id === action.payload.id ? action.payload : tarea) };
+            return { ...state, tareasproyecto: state.tareasproyecto.map(tarea => tarea.id === action.payload.id ? action.payload : tarea) };
         case TAREA_ACTUAL:
             return { ...state, tareaseleccionada: action.payload };
         case LIMPIAR_TAREA:
