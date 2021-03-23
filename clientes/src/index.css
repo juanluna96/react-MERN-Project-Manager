@@ -1,8 +1,9 @@
 :root {
     --blanco: #ffffff;
     --gris1: #edf2f6;
-    --gris2: #2f3848;
-    --gris3: #1a202d;
+    --gris2: #139265;
+    --verde1: #049c5d;
+    --gris3: #353739;
     --negro: #000000;
     --textFont: 'Roboto', sans-serif;
 }
@@ -82,16 +83,21 @@ a {
 }
 
 .btn-primario {
-    background-color: var(--gris2);
+    background-color: var(--gris3);
     color: var(--blanco);
 }
 
 .btn-primario:hover {
-    background: var(--gris3);
+    background: var(--negro);
 }
 
 .btn-secundario {
     background-color: var(--gris1);
+}
+
+.btn-terciario {
+    background-color: var(--verde1);
+    color: white;
 }
 
 .btn-block {
@@ -151,6 +157,13 @@ aside {
 
 .proyectos {
     margin-top: 10rem;
+}
+
+.listado-proyectos,
+.listado-tareas {
+    max-height: 250px;
+    overflow-y: scroll;
+    padding-right: 3px;
 }
 
 .listado-proyectos li {
@@ -343,7 +356,7 @@ aside {
 }
 
 .form-usuario {
-    background-color: var(--gris2);
+    background-color: var(--verde1);
     height: 100vh;
     min-height: 800px;
     display: flex;
@@ -432,7 +445,7 @@ aside {
     float: left;
     margin: 0;
     padding: 2px 7px;
-    color: var(--gris2);
+    color: var(--gris3);
     font-family: sans-serif;
     font-weight: 300;
     font-size: 14px;
@@ -442,8 +455,29 @@ aside {
 
 .label .key {
     background: linear-gradient(to bottom, rgba(63, 76, 107, 0.01) 0%, rgba(18, 19, 30, 0.5) 100%);
-    background-color: var(--gris2);
-    border-radius: var(--gris2) 0 0 var(--gris2);
+    background-color: var(--gris3);
+    border-radius: var(--gris3) 0 0 var(--gris3);
     color: white;
     border-radius: 25px;
+}
+
+
+/* ---------------------------------- LOGO ---------------------------------- */
+
+.logo {
+    max-width: 200px;
+}
+
+
+/* ----------------------------- Barra de scroll ---------------------------- */
+
+.listado-proyectos::-webkit-scrollbar,
+.listado-tareas::-webkit-scrollbar {
+    display: none;
+}
+
+.listado-proyectos,
+.listado-tareas {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

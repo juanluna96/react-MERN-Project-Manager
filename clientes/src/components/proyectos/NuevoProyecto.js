@@ -44,12 +44,12 @@ const NuevoProyecto = () => {
 
     return (
         <Fragment>
-            <button type="button" className="btn btn-block btn-primario" onClick={ () => mostrarFormulario() }>Nuevo proyecto</button>
+            <button type="button" className="btn btn-block btn-primario" onClick={ () => mostrarFormulario() }>Nuevo colegio</button>
 
             { formulario === true
                 ? (<form className="formulario-nuevo-proyecto" onSubmit={ onSubmitProyecto }>
-                    <input type="text" className="input-text" placeholder="Nombre del nuevo proyecto" name="nombre" onChange={ onChangeProyecto } value={ nombre } />
-                    <input type="submit" value="Agregar proyecto" className="btn btn-primario btn-block" />
+                    <input type="text" className="input-text" placeholder="Nombre del nuevo colegio" name="nombre" onChange={ onChangeProyecto } value={ nombre } />
+                    <input type="submit" value="Agregar colegio" className="btn btn-primario btn-block" />
                 </form>)
                 : null
             }
