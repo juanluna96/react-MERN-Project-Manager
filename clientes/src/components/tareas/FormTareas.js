@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import tareaContext from '../../context/tareas/tareaContext';
+import ImagenTarea from './ImagenTarea';
 
 const FormTareas = () => {
     // Extraer si un proyecto esta activo
@@ -91,6 +92,7 @@ const FormTareas = () => {
                     <div className="contenedor-input">
                         <input type="text" name="nombre" value={ nombre } onChange={ handleChange } className="input-text" placeholder="Nombre de la tarea..." />
                     </div>
+                    <ImagenTarea></ImagenTarea>
                     <div className="contenedor-input">
                         <input type="submit" className="btn btn-terciario btn-submit btn-block" value={ tareaseleccionada ? "Editar tarea" : "Agregar tarea" } />
                     </div>
