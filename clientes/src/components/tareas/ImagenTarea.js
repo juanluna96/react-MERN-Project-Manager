@@ -27,7 +27,15 @@ function ImagenTarea() {
                 files={ files }
                 onupdatefiles={ setFiles }
                 allowMultiple={ false }
-                server={ `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos` }
+                server={ {
+                    process: {
+                        url: `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos`,
+                        method: 'POST',
+                        onload: (response) => { const file = JSON.parse(response) }
+                    }
+                }
+                }
+                // server={ `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos` }
                 maxFiles={ 1 }
                 name="files"
                 labelIdle='Selecciona & Arrastra tus archivos o <span class="filepond--label-action">buscalos aquí</span>'

@@ -141,8 +141,17 @@ exports.eliminarTarea = async (req, res) => {
 
 // Subir archivos de tareas al servidor
 
-exports.subirArchivo = function (req, res) {
-    const name_file = req.file.path + '.' + req.file.mimetype.split('/')[1];
-    fs.renameSync(req.file.path, name_file);
-    res.send('Archivo subido correctamente');
+exports.subirArchivo = async (req, res) => {
+    try {
+        const name_file = req.file.path + '.' + req.file.mimetype.split('/')[1];
+        fs.renameSync(req.file.path, name_file);
+        req.file.fileName = name_file;
+        console.log(req.file);
+        const { file } = req;
+        res.send(file);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send('Hubo un error al subir el archivo la tarea');
+    }
+
 }
