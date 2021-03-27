@@ -1,5 +1,6 @@
 const Tarea = require('../models/Tarea')
 const Proyecto = require('../models/Proyecto');
+const fs = require('fs');
 const { validationResult } = require('express-validator');
 
 // Crea una nueva tarea
@@ -136,4 +137,12 @@ exports.eliminarTarea = async (req, res) => {
         console.log(error);
         return res.status(500).send('Hubo un error al eliminar la tarea');
     }
+}
+
+// Subir archivos de tareas al servidor
+
+exports.subirArchivo = function (req, res) {
+    const name_file = req.file.path + '.' + req.file.mimetype.split('/')[1];
+    fs.renameSync(req.file.path, name_file);
+    res.send('Archivo subido correctamente');
 }

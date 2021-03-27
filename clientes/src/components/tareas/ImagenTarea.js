@@ -27,7 +27,7 @@ function ImagenTarea() {
                 files={ files }
                 onupdatefiles={ setFiles }
                 allowMultiple={ false }
-                server={ `${process.env.REACT_APP_BACKEND_URL}/api/tarea/imagen` }
+                server={ `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos` }
                 maxFiles={ 1 }
                 name="files"
                 labelIdle='Selecciona & Arrastra tus archivos o <span class="filepond--label-action">buscalos aquí</span>'
