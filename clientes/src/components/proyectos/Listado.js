@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, Fragment } from 'react'
 import Proyecto from './Proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AlertaContext from '../../context/alertas/alertaContext';
+import BuscadorProyectos from './BuscadorProyectos';
 
 const Listado = () => {
 
@@ -29,16 +30,19 @@ const Listado = () => {
     }
 
     return (
-        <ul className="listado-proyectos">
-            {alerta ? (<div className={ `alerta ${alerta.categoria}` }>{ alerta.msg }</div>) : false }
-            <TransitionGroup>
-                { proyectos.map((proyecto) => (
-                    <CSSTransition key={ proyecto._id } timeout={ 200 } className="proyecto">
-                        <Proyecto proyecto={ proyecto }></Proyecto>
-                    </CSSTransition>
-                )) }
-            </TransitionGroup>
-        </ul>
+        <Fragment>
+            <BuscadorProyectos></BuscadorProyectos>
+            <ul className="listado-proyectos">
+                { alerta ? (<div className={ `alerta ${alerta.categoria}` }>{ alerta.msg }</div>) : false }
+                <TransitionGroup>
+                    { proyectos.map((proyecto) => (
+                        <CSSTransition key={ proyecto._id } timeout={ 200 } className="proyecto">
+                            <Proyecto proyecto={ proyecto }></Proyecto>
+                        </CSSTransition>
+                    )) }
+                </TransitionGroup>
+            </ul>
+        </Fragment>
     )
 }
 
