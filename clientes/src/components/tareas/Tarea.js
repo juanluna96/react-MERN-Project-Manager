@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 import tareaContext from '../../context/tareas/tareaContext';
 import proyectoContext from '../../context/proyectos/proyectoContext';
+const FA = require('react-fontawesome');
 
 const Tarea = ({ tarea }) => {
     // Extraer si un proyecto esta activo
@@ -39,9 +40,9 @@ const Tarea = ({ tarea }) => {
     }
 
     const EditarTarea = (tarea) => {
-        const nivelandoNumTareas = (tarea.estado === true) ? (proyectoActual.numTareas--) : null;
-
         guardarTareaActual(tarea);
+
+        proyectoActual.numTareas--;
     }
 
     const DescargarTarea = (tarea) => {
@@ -61,10 +62,10 @@ const Tarea = ({ tarea }) => {
                     </div>
                     <div className="acciones">
                         { tarea.archivo
-                            ? (<a onClick={ () => DescargarTarea(tarea) } className="btn btn-terciario btn-submit">Archivo</a>)
+                            ? (<button onClick={ () => DescargarTarea(tarea) } className="btn btn-terciario btn-submit btn-radius"><FA name="clipboard" /></button>)
                             : null }
-                        <button className="btn btn-terciario btn-submit" type="button" onClick={ () => EditarTarea(tarea) }>Editar</button>
-                        <button onClick={ () => tareaEliminar(tarea) } className="btn btn-secundario" type="button">Eliminar</button>
+                        <button className="btn btn-secundario" type="button" onClick={ () => EditarTarea(tarea) }>Editar</button>
+                        <button onClick={ () => tareaEliminar(tarea) } className="btn btn-cuaternario" type="button">Eliminar</button>
                     </div>
                 </div>
             </li >

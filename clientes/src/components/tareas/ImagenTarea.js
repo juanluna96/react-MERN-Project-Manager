@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Fragment, useState } from 'react'
 
 // Import React FilePond
-import { FilePond, File, registerPlugin } from 'react-filepond'
+import { FilePond, registerPlugin } from 'react-filepond'
 
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
@@ -32,7 +31,7 @@ function ImagenTarea({ setTarea, tarea }) {
     const file_path = (tarea.archivo !== undefined) ? tarea.archivo : null;
 
     return (
-        <div className="App">
+        <Fragment>
             <FilePond
                 files={ files }
                 onupdatefiles={ setFiles }
@@ -46,12 +45,11 @@ function ImagenTarea({ setTarea, tarea }) {
                     revert: `${process.env.REACT_APP_BACKEND_URL}/api/tareas/delete_file/${file_path}`
                 }
                 }
-                // server={ `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos` }
                 maxFiles={ 1 }
                 name="files"
                 labelIdle='Selecciona & Arrastra tus archivos o <span class="filepond--label-action">buscalos aquí</span>'
             />
-        </div>
+        </Fragment>
     )
 }
 

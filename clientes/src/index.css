@@ -4,6 +4,7 @@
     --gris2: #139265;
     --verde1: #049c5d;
     --gris3: #353739;
+    --rojo1: #f65578;
     --negro: #000000;
     --textFont: 'Roboto', sans-serif;
 }
@@ -101,9 +102,18 @@ a {
     margin-top: 5px;
 }
 
+.btn-cuaternario {
+    background-color: var(--rojo1);
+    color: white;
+}
+
 .btn-block {
     display: block;
     width: 100%;
+}
+
+.btn-radius {
+    border-radius: 50%!important;
 }
 
 .btn-submit:hover {

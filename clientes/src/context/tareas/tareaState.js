@@ -12,8 +12,7 @@ import {
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
     LIMPIAR_TAREA,
-    DESACTIVAR_CARGANDO,
-    DESCARGAR_TAREA
+    DESACTIVAR_CARGANDO
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -39,7 +38,7 @@ const TareaState = (props) => {
                 type: TAREAS_PROYECTO,
                 payload: resultado.data.tareas
             })
-            console.log(resultado.data.tareas);
+            // console.log(resultado.data.tareas);
             setTimeout(() => {
                 dispatch({
                     type: DESACTIVAR_CARGANDO
