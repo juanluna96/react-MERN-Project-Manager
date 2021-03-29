@@ -3,7 +3,6 @@ import Proyecto from './Proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AlertaContext from '../../context/alertas/alertaContext';
-import BuscadorProyectos from './BuscadorProyectos';
 
 const Listado = () => {
 
@@ -31,7 +30,6 @@ const Listado = () => {
 
     return (
         <Fragment>
-            <BuscadorProyectos></BuscadorProyectos>
             <ul className="listado-proyectos">
                 { alerta ? (<div className={ `alerta ${alerta.categoria}` }>{ alerta.msg }</div>) : false }
                 <TransitionGroup>
