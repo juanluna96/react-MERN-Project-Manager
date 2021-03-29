@@ -7,6 +7,10 @@ const tareaSchema = new Schema({
         required: true,
         trim: true
     },
+    archivo: {
+        type: String,
+        required: false
+    },
     estado: {
         type: Boolean,
         default: false

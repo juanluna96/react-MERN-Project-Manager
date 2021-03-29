@@ -1,4 +1,6 @@
 import React, { useReducer } from 'react';
+import download from 'downloadjs';
+
 import tareaContext from './tareaContext'
 import { TareaReducer } from './tareaReducer'
 
@@ -10,7 +12,8 @@ import {
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
     LIMPIAR_TAREA,
-    DESACTIVAR_CARGANDO
+    DESACTIVAR_CARGANDO,
+    DESCARGAR_TAREA
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -110,10 +113,22 @@ const TareaState = (props) => {
         })
     }
 
+    // Descargar una tarea
+    const descargarTarea = async (tarea) => {
+        try {
+            const { archivo, _id } = tarea;
+            const resultado = await clienteAxios.get(`/api/tareas/download_file`, { responseType: 'blob', params: { archivo } });
+            const extension = resultado.data.type.split('/')[1];
+            download(resultado.data, `${_id}.${extension}`);
+        } catch (error) {
+            console.log(error.response)
+        }
+    }
+
     return (
         <tareaContext.Provider value={ {
             tareasproyecto: state.tareasproyecto, errortarea: state.errortarea, tareaseleccionada: state.tareaseleccionada, cargando: state.cargando,
-            obtenerTareas, agregarTarea, validarTarea, eliminarTarea, guardarTareaActual, actualizarTarea, limpiarTarea
+            obtenerTareas, agregarTarea, validarTarea, eliminarTarea, guardarTareaActual, actualizarTarea, limpiarTarea, descargarTarea
         } }>
             {props.children }
         </tareaContext.Provider>

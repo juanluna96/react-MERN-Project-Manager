@@ -25,11 +25,11 @@ function ImagenTarea({ setTarea, tarea }) {
     const addArchivo = (archivo) => {
         setTarea({
             ...tarea,
-            file: archivo
+            archivo: archivo.fileName
         });
     }
 
-    const file_path = (tarea.file !== undefined) ? tarea.file.fileName : null;
+    const file_path = (tarea.archivo !== undefined) ? tarea.archivo : null;
 
     return (
         <div className="App">

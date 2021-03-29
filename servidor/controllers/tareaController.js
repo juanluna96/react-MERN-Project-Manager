@@ -1,6 +1,7 @@
 const Tarea = require('../models/Tarea')
 const Proyecto = require('../models/Proyecto');
 const fs = require('fs');
+const path = require("path");
 const { validationResult } = require('express-validator');
 
 // Crea una nueva tarea
@@ -163,5 +164,16 @@ exports.borrarArchivo = async (req, res) => {
             console.error(err)
         }
     })
-    console.log('Se ha borrado exitosamente');
+    console.log('Se ha borrado el archivo exitosamente');
+}
+
+// Descargar archivo de cierta tarea
+exports.descargarArchivo = async (req, res) => {
+    try {
+        const file = path.join(__dirname, '..', req.query.archivo);
+        res.download(file);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send('Hubo un error al subir el archivo la tarea');
+    }
 }

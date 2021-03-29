@@ -26,7 +26,7 @@ export const TareaReducer = (state, action) => {
         case LIMPIAR_TAREA:
             return { ...state, tareaseleccionada: null }
         case DESACTIVAR_CARGANDO:
-            return { ...state, cargando: false }
+            return { ...state, cargando: false };
         default:
             return state;
     }
