@@ -146,7 +146,6 @@ exports.subirArchivo = async (req, res) => {
         const name_file = req.file.path + '.' + req.file.mimetype.split('/')[1];
         fs.renameSync(req.file.path, name_file);
         req.file.fileName = name_file;
-        console.log(req.file);
         const { file } = req;
         res.send(file);
     } catch (error) {
@@ -154,4 +153,15 @@ exports.subirArchivo = async (req, res) => {
         return res.status(500).send('Hubo un error al subir el archivo la tarea');
     }
 
+}
+
+// Borrar archivos de tareas en el servidor
+exports.borrarArchivo = async (req, res) => {
+    const path = req.params.path;
+    fs.unlink(path, (err) => {
+        if (err) {
+            console.error(err)
+        }
+    })
+    console.log('Se ha borrado exitosamente');
 }

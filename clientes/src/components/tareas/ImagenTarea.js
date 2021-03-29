@@ -18,9 +18,19 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 registerPlugin(FilePondOptions, FilePondPluginImagePreview)
 
 // Our app
-function ImagenTarea() {
+function ImagenTarea({ setTarea, tarea }) {
     const [files, setFiles] = useState([]);
-    console.log(files);
+
+    // Añadir archivo al state
+    const addArchivo = (archivo) => {
+        setTarea({
+            ...tarea,
+            file: archivo
+        });
+    }
+
+    const file_path = (tarea.file !== undefined) ? tarea.file.fileName : null;
+
     return (
         <div className="App">
             <FilePond
@@ -31,8 +41,9 @@ function ImagenTarea() {
                     process: {
                         url: `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos`,
                         method: 'POST',
-                        onload: (response) => { const file = JSON.parse(response) }
-                    }
+                        onload: (response) => { addArchivo(JSON.parse(response)); }
+                    },
+                    revert: `${process.env.REACT_APP_BACKEND_URL}/api/tareas/delete_file/${file_path}`
                 }
                 }
                 // server={ `${process.env.REACT_APP_BACKEND_URL}/api/tareas/archivos` }

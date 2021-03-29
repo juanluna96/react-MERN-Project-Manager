@@ -92,7 +92,7 @@ const FormTareas = () => {
                     <div className="contenedor-input">
                         <input type="text" name="nombre" value={ nombre } onChange={ handleChange } className="input-text" placeholder="Nombre de la tarea..." />
                     </div>
-                    <ImagenTarea></ImagenTarea>
+                    <ImagenTarea tarea={ tarea } setTarea={ setTarea }></ImagenTarea>
                     <div className="contenedor-input">
                         <input type="submit" className="btn btn-terciario btn-submit btn-block" value={ tareaseleccionada ? "Editar tarea" : "Agregar tarea" } />
                     </div>
