@@ -130,8 +130,18 @@ exports.eliminarTarea = async (req, res) => {
             return res.status(401).json({ msg: 'No autorizado' })
         }
 
+        // Elimina el archivo si tiene
+        if (tareaExiste.archivo.trim() !== '') {
+            const path = tareaExiste.archivo;
+            fs.unlink(path, (err) => {
+                if (err) {
+                    console.error(err)
+                }
+            });
+        }
+
         // Elimina la tarea
-        await Tarea.findOneAndRemove({ _id: req.params.id })
+        await Tarea.findOneAndRemove({ _id: req.params.id });
 
         res.json({ msg: 'Tarea eliminada' });
     } catch (error) {
