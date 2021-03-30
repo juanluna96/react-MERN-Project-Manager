@@ -12,13 +12,15 @@ import {
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
     LIMPIAR_TAREA,
-    DESACTIVAR_CARGANDO
+    DESACTIVAR_CARGANDO,
+    BUSCAR_TAREA
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
 const TareaState = (props) => {
     const initialState = {
         tareasproyecto: [],
+        tareasProyectoFiltrado: [],
         errortarea: false,
         tareaseleccionada: null,
         cargando: false
@@ -112,6 +114,14 @@ const TareaState = (props) => {
         })
     }
 
+    // Buscar una tarea en la lista de tareas
+    const buscarTareas = (valor) => {
+        dispatch({
+            type: BUSCAR_TAREA,
+            payload: valor
+        });
+    }
+
     // Descargar una tarea
     const descargarTarea = async (tarea) => {
         try {
@@ -126,8 +136,8 @@ const TareaState = (props) => {
 
     return (
         <tareaContext.Provider value={ {
-            tareasproyecto: state.tareasproyecto, errortarea: state.errortarea, tareaseleccionada: state.tareaseleccionada, cargando: state.cargando,
-            obtenerTareas, agregarTarea, validarTarea, eliminarTarea, guardarTareaActual, actualizarTarea, limpiarTarea, descargarTarea
+            tareasproyecto: state.tareasproyecto, errortarea: state.errortarea, tareaseleccionada: state.tareaseleccionada, cargando: state.cargando, tareasProyectoFiltrado: state.tareasProyectoFiltrado,
+            obtenerTareas, agregarTarea, validarTarea, eliminarTarea, guardarTareaActual, actualizarTarea, limpiarTarea, descargarTarea, buscarTareas
         } }>
             {props.children }
         </tareaContext.Provider>

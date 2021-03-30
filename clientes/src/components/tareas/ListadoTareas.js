@@ -4,6 +4,7 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 import tareaContext from '../../context/tareas/tareaContext';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Snipper from '../snipper/Snipper';
+import BuscadorTareas from './BuscadorTareas';
 
 const ListadoTareas = () => {
     // Obtener el state del proyecto
@@ -12,7 +13,7 @@ const ListadoTareas = () => {
 
     // Obtener el state de las tareas del proyecto
     const tareasContext = useContext(tareaContext);
-    const { tareasproyecto, cargando } = tareasContext;
+    const { tareasproyecto, cargando, tareasProyectoFiltrado } = tareasContext;
 
     // Si no hay proyecto seleccionado
     if (!proyecto) {
@@ -28,13 +29,14 @@ const ListadoTareas = () => {
             <Fragment>
                 <h2>Proyecto: { proyectoActual.nombre }</h2>
                 {/* <Snipper></Snipper> */ }
+                <BuscadorTareas></BuscadorTareas>
                 <ul className="listado-tareas">
                     {
                         tareasproyecto.length === 0
                             ? (<li className="tarea">No hay tareas</li>)
                             : <TransitionGroup>
                                 {
-                                    tareasproyecto.map((tarea) => {
+                                    tareasProyectoFiltrado.map((tarea) => {
                                         return (
                                             <CSSTransition key={ tarea._id } timeout={ 150 } className="tarea">
                                                 <Tarea tarea={ tarea }></Tarea>

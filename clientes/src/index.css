@@ -172,7 +172,7 @@ aside {
 
 .listado-proyectos,
 .listado-tareas {
-    max-height: 250px;
+    max-height: 380px;
     overflow-y: scroll;
     padding-right: 3px;
 }
@@ -247,6 +247,10 @@ aside {
 
 
 /** TAREAS LISTADO **/
+
+.contenedor-tareas {
+    text-align: center;
+}
 
 .contenedor-tareas {
     padding: 4rem;
